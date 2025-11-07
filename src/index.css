@@ -6,10 +6,20 @@
   themes: light --default;
 }
 
-body {
-  font-family: "Poppins", sans-serif;
+/* custom daisy ui color theme */
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #403f3f; /* primary button or cta(call to action) color. */
+  --color-secondary: #d72050; /* secondary button or cta color. */
+
+  --color-base-200: #f3f3f3; /* secondary back-ground color */
+  --color-base-300: #e7e7e7; /* third back-ground color */
+
+  --color-accent: #706f6f; /* primary text-color */
+  --color-accent-2: #403f3f; /* secondary color */
 }
 
-.dark-3 {
-  color: #706f6f;
+* {
+  font-family: "Poppins", sans-serif;
 }
