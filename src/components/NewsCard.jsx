@@ -4,8 +4,7 @@ import { FaStar } from "react-icons/fa";
 import { format } from "date-fns";
 
 const NewsCard = ({ news }) => {
-  const { title, author, rating, total_view, thumbnail_url, details, others } =
-    news;
+  const { title, author, rating, total_view, thumbnail_url, details } = news;
 
   return (
     <div className="card shadow-sm rounded-xl overflow-hidden hover:shadow-md transition-all duration-300">
@@ -62,25 +61,31 @@ const NewsCard = ({ news }) => {
         )}
       </div>
 
-      {/* Rating and Views */}
+      {/* Ratings and Views */}
       <div className="flex justify-between items-center px-4 py-3 border-t border-gray-100">
-        <div className="flex items-center gap-1 text-warning">
-          {[...Array(5)].map((_, i) => (
-            <FaStar
-              key={i}
-              className={
-                i < rating.number ? "text-orange-400" : "text-gray-300"
-              }
-            />
-          ))}
-          <span className="ml-1 text-gray-600 font-medium">
+        {/* Rating */}
+        <div className="flex items-center gap-2">
+          <div className="flex items-center space-x-1">
+            {[...Array(5)].map((_, i) => (
+              <FaStar
+                key={i}
+                className={`text-xl ${
+                  i < Math.round(rating.number)
+                    ? "text-orange-400"
+                    : "text-gray-300"
+                }`}
+              />
+            ))}
+          </div>
+          <span className="text-sm text-gray-700 font-medium leading-none -mb-0.5">
             {rating.number.toFixed(1)}
           </span>
         </div>
 
-        <div className="flex items-center text-gray-500 gap-1">
-          <FaRegEye className="text-lg" />
-          <span className="text-sm">{total_view}</span>
+        {/* Views */}
+        <div className="flex items-center text-gray-500 gap-1.5">
+          <FaRegEye className="text-base" />
+          <span className="text-sm font-medium">{total_view}</span>
         </div>
       </div>
     </div>
