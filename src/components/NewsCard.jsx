@@ -3,8 +3,11 @@ import { FaRegBookmark, FaRegEye, FaShareAlt } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { format } from "date-fns";
 
+import { Link } from "react-router";
+
 const NewsCard = ({ news }) => {
-  const { title, author, rating, total_view, thumbnail_url, details } = news;
+  const { id, title, author, rating, total_view, thumbnail_url, details } =
+    news;
 
   return (
     <div className="card shadow-sm rounded-xl overflow-hidden hover:shadow-md transition-all duration-300">
@@ -52,9 +55,12 @@ const NewsCard = ({ news }) => {
         {details.length > 200 ? (
           <>
             {details.slice(0, 200)}...
-            <span className="text-warning cursor-pointer font-semibold ml-1 hover:underline">
+            <Link
+              to={`/news-details/${id}`}
+              className="text-warning cursor-pointer font-semibold ml-1 hover:underline"
+            >
               Read More
-            </span>
+            </Link>
           </>
         ) : (
           details
